@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { EditTaskAction } from "../store/actions/TasksActions";
+import { EditTaskAction } from "../../store/actions/TasksActions";
 
 const TaskEdit = ({ task, handleClose }) => {
   const dispatch = useDispatch();

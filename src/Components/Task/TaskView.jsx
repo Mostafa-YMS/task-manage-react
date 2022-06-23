@@ -1,4 +1,4 @@
-import { DeleteTaskAction } from "../store/actions/TasksActions";
+import { DeleteTaskAction } from "../../store/actions/TasksActions";
 import { useDispatch } from "react-redux";
 
 const TaskView = ({ task, handleOpen }) => {
