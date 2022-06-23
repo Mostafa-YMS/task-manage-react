@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { AddTaskAction } from "../store/actions/TasksActions";
 import { useDispatch } from "react-redux";
 
-const AddTask = () => {
+const AddTask = ({ toList }) => {
   const dispatch = useDispatch();
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -13,8 +13,7 @@ const AddTask = () => {
     const description = descriptionRef.current.value;
     if (title && description) {
       AddTaskAction({ title, description })(dispatch);
-      titleRef.current.value = "";
-      descriptionRef.current.value = "";
+      toList();
     }
   };
 
@@ -75,7 +74,7 @@ const AddTask = () => {
           marginBottom: "10px",
         }}
       >
-        <button>Cancel</button>
+        <button onClick={toList}>Cancel</button>
         <button type="submit">Add</button>
       </div>
     </form>
