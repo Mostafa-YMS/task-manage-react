@@ -19,3 +19,20 @@ export const ListTasksService = async () => {
     return { error: sError };
   }
 };
+
+export const addTaskService = async ({ title, description }) => {
+  try {
+    const data = await postRequest({
+      endPoint: tasksAPI,
+
+      body: {
+        title,
+        description,
+      },
+    });
+    return data;
+  } catch (e) {
+    const { error } = e?.message;
+    return { error };
+  }
+};

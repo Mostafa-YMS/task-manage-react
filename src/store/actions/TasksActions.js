@@ -1,5 +1,5 @@
-import { TASKS_GET, TASKS_LOADING } from "./types";
-import { ListTasksService } from "../../services/TasksServices";
+import { TASKS_ADD, TASKS_GET, TASKS_LOADING } from "./types";
+import { addTaskService, ListTasksService } from "../../services/TasksServices";
 
 export const ListTasksAction = () => (dispatch) => {
   dispatch({ type: TASKS_LOADING });
@@ -7,3 +7,11 @@ export const ListTasksAction = () => (dispatch) => {
     dispatch({ type: TASKS_GET, payload: d?.data });
   });
 };
+
+export const AddTaskAction =
+  ({ title, description }) =>
+  (dispatch) => {
+    addTaskService({ title, description }).then(() => {
+      dispatch({ type: TASKS_ADD, payload: { title, description } });
+    });
+  };

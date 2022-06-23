@@ -1,4 +1,4 @@
-import { TASKS_GET, TASKS_LOADING } from "../actions/types";
+import { TASKS_ADD, TASKS_GET, TASKS_LOADING } from "../actions/types";
 
 const TasksReducer = (state = { data: [], loading: false }, action) => {
   try {
@@ -13,6 +13,11 @@ const TasksReducer = (state = { data: [], loading: false }, action) => {
         let loadState = { ...state };
         loadState.loading = true;
         return loadState;
+
+      case TASKS_ADD:
+        let addState = { ...state };
+        addState.data.push(action.payload);
+        return addState;
 
       default:
         return state;
