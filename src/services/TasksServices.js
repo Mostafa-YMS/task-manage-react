@@ -36,3 +36,19 @@ export const addTaskService = async ({ title, description }) => {
     return { error };
   }
 };
+
+export const deleteTaskService = async ({ id }) => {
+  try {
+    const data = await delRequest({
+      endPoint: tasksAPI,
+
+      query: {
+        id,
+      },
+    });
+    return data;
+  } catch (e) {
+    const { error } = e?.message;
+    return { error };
+  }
+};

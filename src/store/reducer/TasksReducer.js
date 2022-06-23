@@ -1,4 +1,9 @@
-import { TASKS_ADD, TASKS_GET, TASKS_LOADING } from "../actions/types";
+import {
+  TASKS_ADD,
+  TASKS_DELETE,
+  TASKS_GET,
+  TASKS_LOADING,
+} from "../actions/types";
 
 const TasksReducer = (state = { data: [], loading: false }, action) => {
   try {
@@ -18,6 +23,11 @@ const TasksReducer = (state = { data: [], loading: false }, action) => {
         let addState = { ...state };
         addState.data.push(action.payload);
         return addState;
+
+      case TASKS_DELETE:
+        let delState = { ...state };
+        delState.data = delState.data.filter((e) => e.id !== action.payload);
+        return delState;
 
       default:
         return state;

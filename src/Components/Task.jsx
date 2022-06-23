@@ -1,4 +1,13 @@
+import { DeleteTaskAction } from "../store/actions/TasksActions";
+import { useDispatch } from "react-redux";
+
 const Task = ({ task }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    DeleteTaskAction({ id: task.id })(dispatch);
+  };
+
   return (
     <div
       style={{
@@ -17,7 +26,7 @@ const Task = ({ task }) => {
           justifyContent: "space-around",
         }}
       >
-        <button>Delete</button>
+        <button onClick={handleDelete}>Delete</button>
         <button>Edit</button>
       </div>
     </div>
