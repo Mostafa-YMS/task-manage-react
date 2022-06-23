@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux";
+import TasksList from "./Pages/TasksList";
 
 function App() {
-  const { data, loading } = useSelector((s) => s);
-  
-  return <></>;
+  return <TasksList />;
 }
 
 export default App;

@@ -6,6 +6,7 @@ const TasksReducer = (state = { data: [], loading: false }, action) => {
       case TASKS_GET:
         let getState = state;
         getState.data = action.payload;
+        getState.loading = false;
         return getState;
 
       case TASKS_LOADING:
