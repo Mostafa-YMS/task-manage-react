@@ -1,7 +1,14 @@
-import { TASKS_ADD, TASKS_DELETE, TASKS_GET, TASKS_LOADING } from "./types";
+import {
+  TASKS_ADD,
+  TASKS_DELETE,
+  TASKS_EDIT,
+  TASKS_GET,
+  TASKS_LOADING,
+} from "./types";
 import {
   addTaskService,
   deleteTaskService,
+  editTaskService,
   ListTasksService,
 } from "../../services/TasksServices";
 
@@ -13,10 +20,18 @@ export const ListTasksAction = () => (dispatch) => {
 };
 
 export const AddTaskAction =
-  ({ title, description }) =>
+  ({ id, title, description }) =>
   (dispatch) => {
-    addTaskService({ title, description }).then(() => {
+    addTaskService({ id, title, description }).then(() => {
       dispatch({ type: TASKS_ADD, payload: { title, description } });
+    });
+  };
+
+export const EditTaskAction =
+  ({ id, title, description }) =>
+  (dispatch) => {
+    editTaskService({ id, title, description }).then(() => {
+      dispatch({ type: TASKS_EDIT, payload: { id, title, description } });
     });
   };
 

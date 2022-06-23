@@ -1,35 +1,20 @@
-import { DeleteTaskAction } from "../store/actions/TasksActions";
-import { useDispatch } from "react-redux";
+import { useCallback, useState } from "react";
+import TaskEdit from "./TaskEdit";
+import TaskView from "./TaskView";
 
 const Task = ({ task }) => {
-  const dispatch = useDispatch();
-
-  const handleDelete = () => {
-    DeleteTaskAction({ id: task.id })(dispatch);
-  };
+  const [openEdit, setOpenEdit] = useState(false);
+  const handleOpen = useCallback(() => setOpenEdit(true), []);
+  const handleClose = useCallback(() => setOpenEdit(false), []);
 
   return (
-    <div
-      style={{
-        border: "2px solid #E2E2E2",
-        borderRadius: "8px",
-        padding: "10px",
-        margin: "10px",
-      }}
-    >
-      <h5>{task?.title}</h5>
-      <p>{task?.description}</p>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
-        <button onClick={handleDelete}>Delete</button>
-        <button>Edit</button>
-      </div>
-    </div>
+    <>
+      {openEdit ? (
+        <TaskEdit task={task} handleClose={handleClose} />
+      ) : (
+        <TaskView task={task} handleOpen={handleOpen} />
+      )}
+    </>
   );
 };
 

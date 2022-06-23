@@ -37,6 +37,24 @@ export const addTaskService = async ({ title, description }) => {
   }
 };
 
+export const editTaskService = async ({ id, title, description }) => {
+  try {
+    const data = await putRequest({
+      endPoint: tasksAPI,
+
+      body: {
+        id,
+        title,
+        description,
+      },
+    });
+    return data;
+  } catch (e) {
+    const { error } = e?.message;
+    return { error };
+  }
+};
+
 export const deleteTaskService = async ({ id }) => {
   try {
     const data = await delRequest({
