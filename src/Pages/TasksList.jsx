@@ -18,10 +18,14 @@ const TasksList = () => {
 
   return (
     <div>
-      {!loading && tasks?.length > 0 ? (
+      {tasks?.length > 0 ? (
         tasks?.map((task, i) => <Task key={i} task={task} />)
       ) : (
-        <p style={{ marginTop: "50px", fontSize: "30px" }}>No Tasks</p>
+        <>
+          {!loading && (
+            <p style={{ marginTop: "50px", fontSize: "30px" }}>No Tasks</p>
+          )}
+        </>
       )}
       {loading && (
         <p style={{ marginTop: "50px", fontSize: "30px" }}>Loading ...</p>
