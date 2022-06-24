@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SearchBox from "../Components/SearchBox";
 import Task from "../Components/Task";
 import { ListTasksAction } from "../store/actions/TasksActions";
 
@@ -18,7 +19,9 @@ const TasksList = () => {
 
   return (
     <div>
-      {tasks?.length > 0 ? (
+      <SearchBox />
+
+      {!loading && tasks?.length > 0 ? (
         tasks?.map((task, i) => <Task key={i} task={task} />)
       ) : (
         <>

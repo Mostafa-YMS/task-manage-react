@@ -10,6 +10,7 @@ import {
   deleteTaskService,
   editTaskService,
   ListTasksService,
+  SearchTasksService,
 } from "../../services/TasksServices";
 
 export const ListTasksAction = () => (dispatch) => {
@@ -18,6 +19,15 @@ export const ListTasksAction = () => (dispatch) => {
     dispatch({ type: TASKS_GET, payload: d?.data });
   });
 };
+
+export const SearchTasksAction =
+  ({ text }) =>
+  (dispatch) => {
+    dispatch({ type: TASKS_LOADING });
+    SearchTasksService({ text }).then((d) => {
+      dispatch({ type: TASKS_GET, payload: d?.data });
+    });
+  };
 
 export const AddTaskAction =
   ({ id, title, description }) =>
